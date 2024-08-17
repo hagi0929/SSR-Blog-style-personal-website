@@ -3,7 +3,7 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 
 import { cn } from "@/lib/utils"
-import { AnimatedTabs } from "@/components/ui/animatedTabs";
+import { Navbar } from "@/components/common/navbar";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -22,14 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AnimatedTabs />
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}
       >
-        {children}
+        <Navbar />
+        <main className="p5">{children}</main>
       </body>
     </html>
   );

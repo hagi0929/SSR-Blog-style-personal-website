@@ -1,65 +1,61 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Link } from "lucide-react";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuTrigger } from "../ui/navigation-menu";
-import { NavigationMenuList } from "@radix-ui/react-navigation-menu";
+import { usePathname } from "next/navigation";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import Link from 'next/link';
 
-type Tab = {
-  title: string;
-  value: string;
-  content?: string | React.ReactNode | any;
-};
+export const Navbar = () => {
+  const currentPath = usePathname();
 
-export const header = ({
-  tabs: propTabs,
-  containerClassName,
-  activeTabClassName,
-  tabClassName,
-  contentClassName,
-}: {
-  tabs: Tab[];
-  containerClassName?: string;
-  activeTabClassName?: string;
-  tabClassName?: string;
-  contentClassName?: string;
-}) => {
-  const [active, setActive] = useState<Tab>(propTabs[0]);
-  const [tabs, setTabs] = useState<Tab[]>(propTabs);
-
-  const moveSelectedTabToTop = (idx: number) => {
-    const newTabs = [...propTabs];
-    const selectedTab = newTabs.splice(idx, 1);
-    newTabs.unshift(selectedTab[0]);
-    setTabs(newTabs);
-    setActive(newTabs[0]);
+  // Define the possible paths and their corresponding tab values
+  const pathToTabMap: { [key: string]: string } = {
+    "/home": "home",
+    "/blog": "blog",
+    "/projects": "projects",
+    "/article": "article",
   };
 
-  const [hovering, setHovering] = useState(false);
+  // Function to determine if the Navbar should be hidden based on the current path
+  const shouldHideNavbar = (path: string): boolean => {
+    const hiddenPaths: string[] = ["/login", "/register", "/404"]; // Paths where Navbar should be hidden
+    return hiddenPaths.includes(path);
+  };
+
+  // Function to map the current path to the corresponding tab value
+  const mapPathToTabValue = (path: string): string => {
+    return pathToTabMap[path] || "home"; // Return an empty string or default value if the path is not in the map
+  };
+
+  // Check if the Navbar should be hidden
+  const isNavbarHidden = shouldHideNavbar(currentPath);
+
+  // Determine the current tab value based on the path
+  const currentTabValue = mapPathToTabValue(currentPath);
+
+  // Render null if Navbar should be hidden, otherwise render the Navbar
+  if (isNavbarHidden) {
+    return null;
+  }
 
   return (
     <>
-      <div
-        className={cn(
-          "flex flex-row items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-full",
-          containerClassName
-        )}
-      >
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavigationMenuLink>Link</NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
-      </div >
+      <div className="bg-background top-0 z-40 w-full border-b">
+        <div className="container fixed flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+          <Tabs value={currentTabValue} className="w-[400px]">
+            <TabsList>
+              <Link href="/">
+                <TabsTrigger value="home">Home</TabsTrigger>
+              </Link>
+              <Link href="/projects">
+                <TabsTrigger value="projects">Projects</TabsTrigger>
+              </Link>
+              <Link href="/blog">
+                <TabsTrigger value="blog">Blog</TabsTrigger>
+              </Link>
+            </TabsList>
+          </Tabs>
+        </div>
+      </div>
     </>
   );
 };
-
