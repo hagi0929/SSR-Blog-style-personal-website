@@ -1,61 +1,56 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import Link from 'next/link';
 
 export const Navbar = () => {
   const currentPath = usePathname();
-
-  // Define the possible paths and their corresponding tab values
+  
   const pathToTabMap: { [key: string]: string } = {
     "/home": "home",
     "/blog": "blog",
     "/projects": "projects",
-    "/article": "article",
   };
 
-  // Function to determine if the Navbar should be hidden based on the current path
-  const shouldHideNavbar = (path: string): boolean => {
-    const hiddenPaths: string[] = ["/login", "/register", "/404"]; // Paths where Navbar should be hidden
-    return hiddenPaths.includes(path);
+  const initialTab = pathToTabMap[currentPath] || "home";
+  const [currentTab, setCurrentTab] = useState(initialTab);
+
+  const router = useRouter();
+
+  const handleTabChange = (tab: string) => {
+    setCurrentTab(tab);
+    const path = Object.keys(pathToTabMap).find(key => pathToTabMap[key] === tab) || "/";
+    router.replace(path);
   };
 
-  // Function to map the current path to the corresponding tab value
-  const mapPathToTabValue = (path: string): string => {
-    return pathToTabMap[path] || "home"; // Return an empty string or default value if the path is not in the map
+  const shouldShowNavbar = (path: string): boolean => {
+    const shownPath: string[] = ["/home", "/blog", "/projects"];
+    return shownPath.includes(path);
   };
 
-  // Check if the Navbar should be hidden
-  const isNavbarHidden = shouldHideNavbar(currentPath);
+  const isNavbarShown = shouldShowNavbar(currentTab);
 
-  // Determine the current tab value based on the path
-  const currentTabValue = mapPathToTabValue(currentPath);
+  useEffect(() => {
+    const path = Object.keys(pathToTabMap).find(key => pathToTabMap[key] === currentTab) || "/home";
+    router.replace(path);
+  }, [currentTab]);
 
-  // Render null if Navbar should be hidden, otherwise render the Navbar
-  if (isNavbarHidden) {
+  if (isNavbarShown) {
     return null;
   }
 
   return (
-    <>
-      <div className="bg-background top-0 z-40 w-full border-b">
-        <div className="container fixed flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
-          <Tabs value={currentTabValue} className="w-[400px]">
-            <TabsList>
-              <Link href="/">
-                <TabsTrigger value="home">Home</TabsTrigger>
-              </Link>
-              <Link href="/projects">
-                <TabsTrigger value="projects">Projects</TabsTrigger>
-              </Link>
-              <Link href="/blog">
-                <TabsTrigger value="blog">Blog</TabsTrigger>
-              </Link>
-            </TabsList>
-          </Tabs>
-        </div>
+    <div className="bg-background top-0 z-40 w-full border-b">
+      <div className="container fixed flex h-16 items-center justify-center">
+        <Tabs value={currentTab} onValueChange={handleTabChange} className="w-[400px]">
+          <TabsList>
+            <TabsTrigger value="home">Home</TabsTrigger>
+            <TabsTrigger value="projects">Projects</TabsTrigger>
+            <TabsTrigger value="blog">Blog</TabsTrigger>
+          </TabsList>
+        </Tabs>
       </div>
-    </>
+    </div>
   );
 };
