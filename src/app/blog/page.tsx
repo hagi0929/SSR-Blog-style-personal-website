@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { motion } from "framer-motion";
@@ -9,26 +11,7 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
-
-export default function Blog() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
-        {items.map((item, i) => (
-          <BentoGridItem
-            key={i}
-            title={item.title}
-            description={item.description}
-            header={item.header}
-            className={cn("[&>p:text-lg]", item.className)}
-            icon={item.icon}
-          />
-        ))}
-      </BentoGrid>
-    </main>
-  );
-}
-
+import type { InferGetStaticPropsType, GetStaticProps } from 'next'
 
 const SkeletonOne = () => {
   const variants = {
@@ -188,7 +171,7 @@ const SkeletonFour = () => {
         className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center"
       >
         <Image
-          src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
+          src=""
           alt="avatar"
           height="100"
           width="100"
@@ -203,7 +186,7 @@ const SkeletonFour = () => {
       </motion.div>
       <motion.div className="h-full relative z-20 w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center">
         <Image
-          src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
+          src=""
           alt="avatar"
           height="100"
           width="100"
@@ -221,7 +204,7 @@ const SkeletonFour = () => {
         className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/[0.1] border border-neutral-200 flex flex-col items-center justify-center"
       >
         <Image
-          src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
+          src=""
           alt="avatar"
           height="100"
           width="100"
@@ -274,7 +257,7 @@ const SkeletonFive = () => {
         className="flex flex-row rounded-2xl border border-neutral-100 dark:border-white/[0.2] p-2  items-start space-x-2 bg-white dark:bg-black"
       >
         <Image
-          src="https://pbs.twimg.com/profile_images/1417752099488636931/cs2R59eW_400x400.jpg"
+          src=""
           alt="avatar"
           height="100"
           width="100"
@@ -295,6 +278,7 @@ const SkeletonFive = () => {
     </motion.div>
   );
 };
+
 const items = [
   {
     title: "AI Content Generation",
@@ -353,3 +337,33 @@ const items = [
     icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
   },
 ];
+
+
+
+async function getBlogs() {
+  const blogs = await Promise.resolve(items);
+
+  return blogs;
+}
+
+export default async function Blog() {
+  const projects = await getBlogs()
+
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
+        {items.map((item, i) => (
+          <BentoGridItem
+            key={i}
+            title={item.title}
+            description={item.description}
+            header={item.header}
+            className={cn("[&>p:text-lg]", item.className)}
+            icon={item.icon}
+          />
+        ))}
+      </BentoGrid>
+    </main>
+  );
+}
+
