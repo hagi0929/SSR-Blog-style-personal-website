@@ -12,7 +12,7 @@ import {
   IconTableColumn,
 } from "@tabler/icons-react";
 import type { InferGetStaticPropsType, GetStaticProps } from 'next'
-import metadata from 
+import { blogListData } from "@/data/meta";
 
 const SkeletonOne = () => {
   const variants = {
