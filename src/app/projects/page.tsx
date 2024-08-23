@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { projectListData } from "@/data/meta";
 import Link from "next/link";
-import {NotionItem} from "../../../models/project";
+import {NotionItem} from "@/models/project";
 
 export const revalidate = 60;
 
