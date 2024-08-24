@@ -5,6 +5,7 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import {NotionItem, Tag} from "@/models/project";
 import ProjectList from "@/components/Project/ProjectList";
+import ProjectFilterBar from "@/components/Project/ArticleFilterBar";
 
 
 async function fetchProjects(): Promise<NotionItem[]> {
@@ -38,6 +39,7 @@ export default async function Projects() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className={"max-w-6xl"}><ProjectFilterBar/></div>
       <div className={"max-w-6xl"}><ProjectList items={projects}/></div>
     </main>
   );

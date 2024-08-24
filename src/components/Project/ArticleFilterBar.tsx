@@ -1,31 +1,34 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Tag } from "@/models/project";
 import { cn } from "@/lib/utils";
 
-async function fetchProjectTagList(): Promise<Tag[]> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/project/tags`);
+async function fetchTags(path: string): Promise<Tag[]> {
+  let endpoint = "";
+
+  if (path.startsWith("/blog")) {
+    endpoint = `${process.env.NEXT_PUBLIC_SITE_URL}/api/blog/tags`;
+  } else if (path.startsWith("/projects")) {
+    endpoint = `${process.env.NEXT_PUBLIC_SITE_URL}/api/project/tags`;
+  } else {
+    return [];
+  }
+
+  const response = await fetch(endpoint, {
+    cache: "no-store",
+  });
 
   if (!response.ok) {
     throw new Error(`Failed to fetch tags: ${response.statusText}`);
   }
 
-  const data = await response.json();
-  return data as Tag[];
+  return response.json() as Promise<Tag[]>;
 }
 
-export default function ArticleFilterBar() {
-  const [tags, setTags] = useState<Tag[]>([]);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchProjectTagList()
-      .then(setTags)
-      .catch(err => setError(err.message));
-  }, []);
-
-  if (error) {
-    return <div>Error loading tags: {error}</div>;
-  }
+export default async function ProjectFilterBar() {
+  const pathname = usePathname();
+  const tags = await fetchTags(pathname);
 
   return (
     <div className={cn("carousel-container", "overflow-x-auto", "whitespace-nowrap", "p-4")}>
