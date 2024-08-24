@@ -1,8 +1,6 @@
-import {fetchProjectList} from "@/lib/notion";
-import {projectListData} from "@/data/meta";
-
-
-import {NotionItem, Link, Tag} from "@/models/project";
+import { fetchProjectList } from "@/lib/notion";
+import { NotionItem, Link, Tag } from "@/models/project";
+import { NextResponse } from "next/server"; // Ensure you import NextResponse
 
 export function parseNotionResponse(data: any): NotionItem[] {
     return data.results.map((page: any) => {
@@ -15,18 +13,17 @@ export function parseNotionResponse(data: any): NotionItem[] {
         const links: Link[] = [];
 
         if (page.properties.Github?.url) {
-            links.push({type: 'github', url: page.properties.Github.url});
+            links.push({ type: 'github', url: page.properties.Github.url });
         }
 
         if (page.properties.Website?.url) {
-            links.push({type: 'website', url: page.properties.Website.url});
+            links.push({ type: 'website', url: page.properties.Website.url });
         }
 
-        // Returning the mapped NotionItem
         return {
             id: page.id,
             notionId: page.id,
-            title: page.properties.name.title[0]?.plain_text || '',
+            title: page.properties.title.title[0]?.plain_text || '',
             description: page.properties.Description.rich_text[0]?.plain_text || '',
             links,
             tags,
@@ -35,8 +32,13 @@ export function parseNotionResponse(data: any): NotionItem[] {
 }
 
 export async function GET() {
-    const data = await fetchProjectList();
+    try {
+        const data = await fetchProjectList();
+        const parsedData = parseNotionResponse(data);
 
-    const s = parseNotionResponse(data);
-    return s
+        return NextResponse.json(parsedData);
+    } catch (error) {
+        console.error("Error fetching projects:", error);
+        return NextResponse.error();
+    }
 }

@@ -1,23 +1,26 @@
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
+import {NotionItem} from "@/models/project";
+import {cn} from "@/lib/utils";
 
+interface ProjectListProps {
+  items: NotionItem[]
+}
 
-export default async function ProjectList() {
+export default async function ProjectList({items} : ProjectListProps) {
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
+      <BentoGrid className="mx-auto md:auto-rows-[20rem]">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
             title={item.title}
             description={item.description}
-            header={item.header}
-            className={cn("[&>p:text-lg]", item.className)}
-            icon={item.icon}
+            header={""}
+            className={cn("[&>p:text-lg]")}
+            href={`/article/${item.id}`}
           />
         ))}
       </BentoGrid>
-    </main>
   );
 }
 
