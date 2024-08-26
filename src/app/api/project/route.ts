@@ -1,5 +1,5 @@
-import { fetchProjectList } from "@/lib/notion";
-import { NotionItem, Link, Tag } from "@/models/project";
+import { fetchProjectList } from "@/utils/api/notion";
+import { NotionItem, Link, Tag } from "@/models/models";
 import { NextResponse } from "next/server"; // Ensure you import NextResponse
 
 export function parseNotionResponse(data: any): NotionItem[] {

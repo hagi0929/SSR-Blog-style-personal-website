@@ -1,4 +1,4 @@
-import {fetchPageBlocks, fetchPagePropertyById, renderHTMLFromBlocks} from "@/lib/notion";
+import {fetchPageBlocks, fetchPagePropertyById, renderHTMLFromBlocks} from "@/utils/api/notion";
 import { NextResponse } from "next/server";
 import {parseNotionResponse} from "@/app/api/project/route";
 

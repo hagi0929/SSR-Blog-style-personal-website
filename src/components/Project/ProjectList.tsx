@@ -1,5 +1,5 @@
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
-import {NotionItem} from "@/models/project";
+import {NotionItem} from "@/models/models";
 import {cn} from "@/lib/utils";
 
 interface ProjectListProps {

@@ -3,35 +3,11 @@ import {BentoGrid, BentoGridItem} from "@/components/ui/bento-grid";
 import {motion} from "framer-motion";
 import {cn} from "@/lib/utils";
 import Link from "next/link";
-import {NotionItem, Tag} from "@/models/project";
+import {NotionItem, Tag} from "@/models/models";
 import ProjectList from "@/components/Project/ProjectList";
 import ProjectFilterBar from "@/components/Project/ArticleFilterBar";
+import {fetchProjects, fetchProjectTagList} from "@/utils/api";
 
-
-async function fetchProjects(): Promise<NotionItem[]> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/project`, {
-    // TODO fix the revalidate logic
-    next: {revalidate: 60},
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch projects: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  return data as NotionItem[];
-}
-
-async function fetchProjectTagList(): Promise<Tag[]> {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/project/tags`);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch projects: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  return data as Tag[];
-}
 
 export default async function Projects() {
   const projects = await fetchProjects();

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Tag } from "@/models/project";
+import { Tag } from "@/models/models";
 import { cn } from "@/lib/utils";
 
 async function fetchTags(path: string): Promise<Tag[]> {
