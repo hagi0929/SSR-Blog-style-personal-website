@@ -5,8 +5,8 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import ProjectList from "@/components/Project/ProjectList";
 import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
-import {getProjects} from "@/apis/projects";
-import {getProjectSeriesList} from "@/apis/articles";
+import {getProjects} from "@/api/projects";
+import {getProjectSeriesList} from "@/api/articles";
 
 
 export default async function Projects() {

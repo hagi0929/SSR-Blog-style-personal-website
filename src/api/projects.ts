@@ -1,4 +1,4 @@
-import {ProjectCategoryModel, ProjectModel, ProjectTechStackModel, TechStackModel} from "@/models/models";
+import {ProjectCategoryModel, ProjectModel, ProjectTechStackModel} from "@/models/models";
 
 export async function getProjects(categoryLabel: string | null = null,
                                   techStackLabel: string | null = null,

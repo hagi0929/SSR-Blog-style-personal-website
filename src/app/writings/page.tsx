@@ -5,7 +5,7 @@ import {cn} from "@/lib/utils";
 import Link from "next/link";
 import ProjectList from "@/components/Project/ProjectList";
 import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
-import {getArticles, getArticleTagList} from "@/apis/articles";
+import {getArticles, getArticleTagList} from "@/api/articles";
 
 
 export default async function Writings() {

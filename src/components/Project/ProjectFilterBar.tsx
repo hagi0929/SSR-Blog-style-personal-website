@@ -2,7 +2,7 @@
 
 import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
-import {getProjectSeriesList} from "@/apis/articles";
+import {getProjectSeriesList} from "@/api/articles";
 
 
 export default async function ProjectFilterBar() {
