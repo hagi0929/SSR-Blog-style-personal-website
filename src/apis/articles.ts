@@ -4,7 +4,6 @@ import {
     ProjectCategoryModel,
     ProjectModel,
     ProjectTechStackModel,
-    TechStackModel
 } from "@/models/models";
 
 export async function getArticleById(articleId: string): Promise<FullArticleModel> {
@@ -24,7 +23,7 @@ export async function getArticleById(articleId: string): Promise<FullArticleMode
     return data as FullArticleModel;
 }
 
-export async function getArticlesBySeriesId(seriesId: string): Promise<FullArticleModel> {
+export async function getArticlesBySeriesId(seriesId: string): Promise<ArticleModel> {
     const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`);
     if (seriesId) {
         url.searchParams.append("seriesId", seriesId);
@@ -38,7 +37,7 @@ export async function getArticlesBySeriesId(seriesId: string): Promise<FullArtic
     }
 
     const data = await response.json();
-    return data as FullArticleModel;
+    return data as ArticleModel;
 }
 
 export async function getArticles(tagLabel: string | null = null,

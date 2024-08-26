@@ -1,11 +1,10 @@
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
-import {NotionItem} from "@/models/models";
 import {cn} from "@/lib/utils";
+import {ProjectModel} from "@/models/models";
 
-interface ProjectListProps {
-  items: NotionItem[]
+export interface ProjectListProps {
+  items: ProjectModel[];
 }
-
 export default async function ProjectList({items} : ProjectListProps) {
 
   return (

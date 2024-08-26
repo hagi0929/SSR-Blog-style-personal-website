@@ -1,5 +1,6 @@
 import {ExtendedRecordMap} from "notion-types";
 import * as url from "node:url";
+import {string} from "node:crypto";
 
 enum LinkType {
     Github,
@@ -16,13 +17,13 @@ export interface LinkModel {
 
 
 export interface ArticleTagModel {
-    id: number;
+    id: string;
     label: string;
     count?: number;
 }
 
 export interface ArticleSeriesModel {
-    id: number;
+    id: string;
     label: string;
     count?: number;
 }
@@ -47,19 +48,19 @@ export interface ArticleModel {
 }
 
 export interface ProjectTechStackModel {
-    id: number;
+    id: string;
     label: string;
     count?: number;
 }
 
 export interface ProjectCategoryModel {
-    id: number;
+    id: string;
     label: string;
     count?: number;
 }
 
 export interface ProjectModel {
-    id: number;
+    id: string;
     title: string;
     description: string;
     thumbnail: string;
