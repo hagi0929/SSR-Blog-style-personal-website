@@ -51,15 +51,19 @@ const Tab = () => {
         return tabItems.some(item => path.startsWith(item.path));
     };
 
-    const isNavbarShown = shouldShowNavbar(currentPath);
+    const [tabShown, setTabShown] =  useState(shouldShowNavbar(currentPath));
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             if (currentScrollY > lastScrollY) {
-                setIsTabVisible(false); // Scrolling down
+                // Scrolling down
+                setIsTabVisible(false);
+                setTimeout(() => setTabShown(false), 300); // Wait for the transition to finish
             } else {
-                setIsTabVisible(true); // Scrolling up
+                // Scrolling up
+                setTabShown(true);
+                setTimeout(() => setIsTabVisible(true), 300); // Delay to trigger the CSS transition
             }
             setLastScrollY(currentScrollY);
         };
@@ -72,7 +76,7 @@ const Tab = () => {
     }, [lastScrollY]);
 
     return (
-        isNavbarShown &&
+        tabShown &&
         <div 
             className={`transition-all duration-300 ${
                 isTabVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
