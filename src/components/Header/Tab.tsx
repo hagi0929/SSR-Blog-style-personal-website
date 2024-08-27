@@ -30,6 +30,8 @@ const Tab = () => {
     };
 
     const [currentTab, setCurrentTab] = useState(getBasePath(currentPath) || tabItems[0].path);
+    const [isTabVisible, setIsTabVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
         const basePath = getBasePath(currentPath);
@@ -51,17 +53,41 @@ const Tab = () => {
 
     const isNavbarShown = shouldShowNavbar(currentPath);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY) {
+                setIsTabVisible(false); // Scrolling down
+            } else {
+                setIsTabVisible(true); // Scrolling up
+            }
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
         isNavbarShown &&
-        <Tabs value={currentTab} onValueChange={handleTabChange} className="w-[400px]">
-            <TabsList>
-                {tabItems.map(({ name, path }) => (
-                    <TabsTrigger key={name} value={path}>
-                        {name}
-                    </TabsTrigger>
-                ))}
-            </TabsList>
-        </Tabs>
+        <div 
+            className={`transition-all duration-300 ${
+                isTabVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+            }`}
+        >
+            <Tabs value={currentTab} onValueChange={handleTabChange}>
+                <TabsList>
+                    {tabItems.map(({ name, path }) => (
+                        <TabsTrigger key={name} value={path}>
+                            {name}
+                        </TabsTrigger>
+                    ))}
+                </TabsList>
+            </Tabs>
+        </div>
     );
 }
 
