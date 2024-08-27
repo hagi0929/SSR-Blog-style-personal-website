@@ -263,6 +263,15 @@ export const mockArticleTags: ArticleTagModel[] = [
     {id: tagUUIDs[5], label: 'Frontend Development'},
 ];
 
+export const mockTags: ArticleTagModel[] = [
+    {id: tagUUIDs[0], label: 'Rust', count: 5},
+    {id: tagUUIDs[1], label: 'Programming', count: 3},
+    {id: tagUUIDs[2], label: 'Next.js', count: 9},
+    {id: tagUUIDs[3], label: 'JavaScript', count: 7},
+    {id: tagUUIDs[4], label: 'Vue.js', count: 1},
+    {id: tagUUIDs[5], label: 'Frontend Development', count: 4},
+];
+
 export const mockArticleSeries: ArticleSeriesModel[] = [
     {id: seriesUUIDs[0], label: 'Web Development Series'},
     {id: seriesUUIDs[1], label: 'Advanced JavaScript Series'},

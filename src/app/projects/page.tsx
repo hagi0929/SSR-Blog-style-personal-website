@@ -9,7 +9,7 @@ import { getProjects } from "@/api/projects";
 import { getProjectSeriesList } from "@/api/articles";
 import Heading from "@/components/Heading";
 import Tags from "@/components/Tags";
-import { mockArticleTags } from "@/data/mockData";
+import { mockArticleTags, mockTags } from "@/data/mockData";
 
 
 export default async function Projects() {
@@ -22,9 +22,9 @@ export default async function Projects() {
                 heading="Projects"
                 subheading="I like building things. Here are a few things I've built"
             />
-            <div className="px-4">
+            <div className="px-2">
                 <Tags
-                    tags={mockArticleTags}
+                    tags={mockTags}
                 />
             </div>
         </div>
