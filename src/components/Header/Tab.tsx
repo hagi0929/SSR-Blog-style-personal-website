@@ -53,17 +53,15 @@ const Tab = () => {
 
     return (
         isNavbarShown &&
-        <div className="container fixed flex h-16 items-center justify-center">
-            <Tabs value={currentTab} onValueChange={handleTabChange} className="w-[400px]">
-                <TabsList>
-                    {tabItems.map(({ name, path }) => (
-                        <TabsTrigger key={name} value={path}>
-                            {name}
-                        </TabsTrigger>
-                    ))}
-                </TabsList>
-            </Tabs>
-        </div>
+        <Tabs value={currentTab} onValueChange={handleTabChange} className="w-[400px]">
+            <TabsList>
+                {tabItems.map(({ name, path }) => (
+                    <TabsTrigger key={name} value={path}>
+                        {name}
+                    </TabsTrigger>
+                ))}
+            </TabsList>
+        </Tabs>
     );
 }
 
