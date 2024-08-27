@@ -9,14 +9,14 @@ import { getProjects } from "@/api/projects";
 import { getProjectSeriesList } from "@/api/articles";
 import Heading from "@/components/Heading";
 import Tags from "@/components/Tags";
-import { mockArticleTags, mockTags } from "@/data/mockData";
+import { mockArticles, mockTags } from "@/data/mockData";
 
 
 export default async function Projects() {
     // const projects = await getProjects();
 
     return (
-        <div className="w-full flex flex-col min-h-screen pt-16">
+        <div className="w-full flex flex-col min-h-screen">
             {/* <ProjectList items={projects}/> */}
             <Heading
                 heading="Projects"
@@ -26,6 +26,15 @@ export default async function Projects() {
                 <Tags
                     tags={mockTags}
                 />
+                <BentoGrid>
+                    {mockArticles.map(({ id, title, previewText }) => (
+                        <BentoGridItem
+                            key={id}
+                            title={title}
+                            description={previewText}
+                        />
+                    ))}
+                </BentoGrid>
             </div>
         </div>
     );
