@@ -1,7 +1,7 @@
 "use client";
 
 import { ArticleTagModel } from '@/models/models';
-import React from 'react';
+import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 
 interface TagsProps {
@@ -13,13 +13,28 @@ const Tags: React.FC<TagsProps> = ({ tags }) => {
         return acc + (tag.count ?? 0);
     }, 0);
 
+    const [activeTag, setActiveTag] = useState("All");
+
+    const onClickTag = (tag: string) => {
+        setActiveTag(tag);
+    }
+
     return (
         <div className="hidden md:flex flex-row gap-2">
-            <Badge variant="outline">
+            <Badge
+                variant={activeTag === "All" ? "default" : "outline"}
+                className="cursor-pointer"
+                onClick={() => onClickTag("All")}
+            >
                 {total} All
             </Badge>
             {tags.map(({ id, label, count }) => (
-                <Badge key={id} variant="outline">
+                <Badge
+                    key={id}
+                    variant={activeTag === label ? "default" : "outline"}
+                    className="cursor-pointer"
+                    onClick={() => onClickTag(label)}
+                >
                     {count ?? 0} {label}
                 </Badge>
             ))}
