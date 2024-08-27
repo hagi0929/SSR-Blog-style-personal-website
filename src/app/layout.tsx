@@ -3,7 +3,6 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 
 import { cn } from "@/lib/utils"
-import { Header } from "@/components/Header/index";
 import Tab from "@/components/Header/Tab";
 
 const fontSans = FontSans({
@@ -25,14 +24,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "flex flex-col min-h-screen w-screen bg-background font-sans antialiased items-center",
+          "flex flex-col min-h-screen bg-background font-sans antialiased items-center",
           fontSans.variable
         )}
       >
         <header className="fixed w-screen md:w-2/3 mt-4 md:mt-10">
           <Tab />
         </header>
-        <main className="w-screen md:w-2/3">{children}</main>
+        <main className="w-screen md:w-2/3 pt-8 md:pt-16">{children}</main>
       </body>
     </html>
   );
