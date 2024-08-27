@@ -8,18 +8,25 @@ import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
 import { getProjects } from "@/api/projects";
 import { getProjectSeriesList } from "@/api/articles";
 import Heading from "@/components/Heading";
+import Tags from "@/components/Tags";
+import { mockArticleTags } from "@/data/mockData";
 
 
 export default async function Projects() {
     // const projects = await getProjects();
 
     return (
-        <div className="w-full flex flex-col min-h-screen  md:items-center pt-16 border-2">
+        <div className="w-full flex flex-col min-h-screen pt-16">
             {/* <ProjectList items={projects}/> */}
             <Heading
                 heading="Projects"
                 subheading="I like building things. Here are a few things I've built"
             />
+            <div className="px-4">
+                <Tags
+                    tags={mockArticleTags}
+                />
+            </div>
         </div>
     );
 }
