@@ -213,6 +213,103 @@ export const mockArticles: ArticleModel[] = [
         createdAt: new Date('2024-03-10T09:30:00Z'),
         series: null,
     },
+    {
+        id: articleUUIDs[0],
+        title: 'Understanding Rust',
+        previewText: 'An in-depth look at Rust programming language...',
+        tags: [
+            {id: tagUUIDs[0], label: 'Rust'},
+            {id: tagUUIDs[1], label: 'Programming'},
+        ],
+        createdAt: new Date('2024-01-01T10:00:00Z'),
+        series: null,
+    },
+    {
+        id: articleUUIDs[1],
+        title: 'Getting Started with Next.js',
+        previewText: 'A comprehensive guide to building your first Next.js app...',
+        tags: [
+            {id: tagUUIDs[2], label: 'Next.js'},
+            {id: tagUUIDs[3], label: 'JavaScript'},
+        ],
+        createdAt: new Date('2024-02-15T08:00:00Z'),
+        series: {
+            id: seriesUUIDs[0],
+            label: 'Web Development Series',
+        },
+    },
+    {
+        id: articleUUIDs[2],
+        title: 'Mastering Vue.js',
+        previewText: 'Learn how to build dynamic web applications with Vue.js...',
+        tags: [
+            {id: tagUUIDs[4], label: 'Vue.js'},
+            {id: tagUUIDs[5], label: 'Frontend Development'},
+        ],
+        createdAt: new Date('2024-03-10T09:30:00Z'),
+        series: null,
+    },
+    {
+        id: articleUUIDs[0],
+        title: 'Understanding Rust',
+        previewText: 'An in-depth look at Rust programming language...',
+        tags: [
+            {id: tagUUIDs[0], label: 'Rust'},
+            {id: tagUUIDs[1], label: 'Programming'},
+        ],
+        createdAt: new Date('2024-01-01T10:00:00Z'),
+        series: null,
+    },
+    {
+        id: articleUUIDs[1],
+        title: 'Getting Started with Next.js',
+        previewText: 'A comprehensive guide to building your first Next.js app...',
+        tags: [
+            {id: tagUUIDs[2], label: 'Next.js'},
+            {id: tagUUIDs[3], label: 'JavaScript'},
+        ],
+        createdAt: new Date('2024-02-15T08:00:00Z'),
+        series: {
+            id: seriesUUIDs[0],
+            label: 'Web Development Series',
+        },
+    },
+    {
+        id: articleUUIDs[2],
+        title: 'Mastering Vue.js',
+        previewText: 'Learn how to build dynamic web applications with Vue.js...',
+        tags: [
+            {id: tagUUIDs[4], label: 'Vue.js'},
+            {id: tagUUIDs[5], label: 'Frontend Development'},
+        ],
+        createdAt: new Date('2024-03-10T09:30:00Z'),
+        series: null,
+    },
+    {
+        id: articleUUIDs[1],
+        title: 'Getting Started with Next.js',
+        previewText: 'A comprehensive guide to building your first Next.js app...',
+        tags: [
+            {id: tagUUIDs[2], label: 'Next.js'},
+            {id: tagUUIDs[3], label: 'JavaScript'},
+        ],
+        createdAt: new Date('2024-02-15T08:00:00Z'),
+        series: {
+            id: seriesUUIDs[0],
+            label: 'Web Development Series',
+        },
+    },
+    {
+        id: articleUUIDs[2],
+        title: 'Mastering Vue.js',
+        previewText: 'Learn how to build dynamic web applications with Vue.js...',
+        tags: [
+            {id: tagUUIDs[4], label: 'Vue.js'},
+            {id: tagUUIDs[5], label: 'Frontend Development'},
+        ],
+        createdAt: new Date('2024-03-10T09:30:00Z'),
+        series: null,
+    },
 ];
 
 export const mockFullArticles: FullArticleModel[] = [
