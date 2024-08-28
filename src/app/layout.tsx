@@ -24,14 +24,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "flex flex-col min-h-screen bg-background font-sans antialiased items-center",
+          "flex flex-col min-h-screen bg-background font-sans antialiased items-center pb-10",
           fontSans.variable
         )}
       >
         <header className="fixed w-screen md:w-2/3 mt-4 md:mt-10">
           <Tab />
         </header>
-        <main className="w-screen md:w-2/3 px-4 md:px-0 pt-8 md:pt-16">{children}</main>
+        <main className="w-screen md:w-2/3 px-4 md:px-0 pt-20 md:pt-28">{children}</main>
       </body>
     </html>
   );
