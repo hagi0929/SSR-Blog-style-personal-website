@@ -19,6 +19,10 @@ const Tab = () => {
             path: "/projects"
         },
         {
+            name: "Writings",
+            path: "/writings"
+        },
+        {
             name: "programming",
             path: "/programming"
         },
@@ -44,7 +48,7 @@ const Tab = () => {
     useEffect(() => {
         const basePath = getBasePath(currentPath);
         if (!basePath) {
-            router.replace("/home");
+            router.push("/home");
         } else {
             setCurrentTab(basePath);
         }
@@ -52,7 +56,7 @@ const Tab = () => {
 
     const handleTabChange = (tab: string) => {
         setCurrentTab(tab);
-        router.replace(tab);
+        router.push(tab);
     };
 
     const shouldShowNavbar = (path: string): boolean => {
