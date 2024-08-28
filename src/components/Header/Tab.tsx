@@ -15,12 +15,20 @@ const Tab = () => {
             path: "/home"
         },
         {
-            name: "Blog",
-            path: "/blog"
-        },
-        {
             name: "Projects",
             path: "/projects"
+        },
+        {
+            name: "programming",
+            path: "/programming"
+        },
+        {
+            name: "personal",
+            path: "/personal"
+        },
+        {
+            name: "blog",
+            path: "/blog"
         },
     ];
 
