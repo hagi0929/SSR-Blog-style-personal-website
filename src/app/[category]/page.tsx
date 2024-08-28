@@ -46,7 +46,7 @@ const Page = ({ params }: { params: { category: string } }) => {
     const { subheading, tags, articles } = categoryData;
 
     return (
-        <div className="w-full flex flex-col min-h-screen">
+        <div className="w-full flex flex-col min-h-screen gap-8">
             <Heading
                 heading={params.category.charAt(0).toUpperCase() + params.category.slice(1)}
                 subheading={subheading}
