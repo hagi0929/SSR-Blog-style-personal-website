@@ -31,7 +31,7 @@ export default function RootLayout({
         <header className="fixed w-screen md:w-2/3 mt-4 md:mt-10">
           <Tab />
         </header>
-        <main className="w-screen md:w-2/3 pt-8 md:pt-16">{children}</main>
+        <main className="w-screen md:w-2/3 px-4 md:px-0 pt-8 md:pt-16">{children}</main>
       </body>
     </html>
   );
