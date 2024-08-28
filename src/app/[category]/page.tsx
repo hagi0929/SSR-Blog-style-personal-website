@@ -51,7 +51,7 @@ const Page = ({ params }: { params: { category: string } }) => {
                 heading={params.category.charAt(0).toUpperCase() + params.category.slice(1)}
                 subheading={subheading}
             />
-            <div className="px-2">
+            <div className="flex flex-col px-2 gap-4">
                 <Tags tags={tags} />
                 <BentoGrid>
                     {articles.map(({ id, title, previewText, category }) => {

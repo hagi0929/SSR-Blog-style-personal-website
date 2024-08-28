@@ -22,7 +22,7 @@ export default async function Projects() {
                 heading="Projects"
                 subheading="I like building things. Here are a few things I've built"
             />
-            <div className="px-2">
+            <div className="flex flex-col px-2 gap-4">
                 <Tags
                     tags={mockTags}
                 />
