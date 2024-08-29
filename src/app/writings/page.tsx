@@ -59,12 +59,14 @@ export default async function Writings() {
           All Posts
         </span>
         <BentoGrid>
-          {exampleArticles.map(({ id, title, previewText, category }) => {
+          {exampleArticles.map(({ id, title, previewText, category }, index) => {
             const url = "/" + category + "/" + id;
+            const style = index % 3 == 0 ? "col-span-2" : "col-span-1";
             return (
               <BentoGridItem
                 key={id}
                 title={title}
+                className={style}
                 description={previewText}
                 href={url}
               />

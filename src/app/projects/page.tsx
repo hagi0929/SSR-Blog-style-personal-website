@@ -14,9 +14,10 @@ import { mockArticles, mockTags } from "@/data/mockData";
 
 export default async function Projects() {
     // const projects = await getProjects();
-
+    let count = 0;
+    let addThree = true;
     return (
-        <div className="w-full flex flex-col min-h-screen">
+        <div className="w-full flex flex-col min-h-screen gap-4">
             {/* <ProjectList items={projects}/> */}
             <Heading
                 heading="Projects"
@@ -27,13 +28,22 @@ export default async function Projects() {
                     tags={mockTags}
                 />
                 <BentoGrid>
-                    {mockArticles.map(({ id, title, previewText }) => (
-                        <BentoGridItem
-                            key={id}
-                            title={title}
-                            description={previewText}
-                        />
-                    ))}
+                    {mockArticles.map(({ id, title, previewText }, index) => {
+                        let style = "col-span-1";
+                        if (index == count) {
+                            style = "col-span-2";
+                            addThree ? count += 3 : count += 1;
+                            addThree = !addThree 
+                        }
+                        return (
+                            <BentoGridItem
+                                key={id}
+                                title={title}
+                                description={previewText}
+                                className={style}
+                            />
+                        )
+                    })}
                 </BentoGrid>
             </div>
         </div>
