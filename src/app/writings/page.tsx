@@ -25,7 +25,7 @@ export default async function Writings() {
     <div className="w-full flex flex-col min-h-screen gap-16">
       <Heading
         heading="Writings"
-        subheading="These are list of my writines. Most of them would be technical stuff"
+        subheading="These are list of my writings. Most of them would be technical stuff"
       />
       <div className="flex flex-col gap-4">
         <span className="text-2xl font-bold">
@@ -35,14 +35,14 @@ export default async function Writings() {
           opts={{
             align: "start",
           }}
-          className="w-3/4 md:w-full self-center"
+          className="w-3/4 sm:w-5/6 md:w-full self-center"
         >
           <CarouselContent>
             {Array.from({ length: 10 }).map((_, index) => (
-              <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/5">
+              <CarouselItem key={index} className="sm:basis-1/3 lg:basis-1/5 ">
                 <div className="p-1">
                   <Card>
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                    <CardContent className="flex aspect-[0.8] items-center justify-center p-6">
                       <span className="text-3xl font-semibold">{index + 1}</span>
                     </CardContent>
                   </Card>
