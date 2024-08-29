@@ -38,7 +38,7 @@ export const BentoGridItem = ({
   href?: Url;
 }) => {
   return (
-    <Link href={href || ""} passHref className="block h-full">
+    <Link href={href || ""} passHref className={cn("grid h-full", className)}>
       <Card className="h-full row-span-1 rounded-xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border border-muted justify-between flex flex-col space-y-4">
         <CardHeader>
           <CardTitle>{title}</CardTitle>
