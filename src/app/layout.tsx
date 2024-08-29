@@ -28,7 +28,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <header className="fixed w-screen md:w-2/3 mt-4 md:mt-10">
+        <header className="z-50 fixed top-4 md:top-10 w-[98vw] md:w-2/3">
           <Tab />
         </header>
         <main className="w-screen md:w-2/3 px-4 md:px-0 pt-20 md:pt-28">{children}</main>
