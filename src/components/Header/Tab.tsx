@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from 'react';
+import Link from "next/link";
 
 const Tab = () => {
     const router = useRouter();
@@ -63,7 +64,7 @@ const Tab = () => {
         return tabItems.some(item => path.startsWith(item.path));
     };
 
-    const [tabShown, setTabShown] =  useState(shouldShowNavbar(currentPath));
+    const [tabShown, setTabShown] = useState(shouldShowNavbar(currentPath));
 
     useEffect(() => {
         const handleScroll = () => {
@@ -89,17 +90,18 @@ const Tab = () => {
 
     return (
         tabShown &&
-        <div 
-            className={`transition-all duration-300 ${
-                isTabVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-            }`}
+        <div
+            className={`transition-all duration-300 ${isTabVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+                }`}
         >
             <Tabs value={currentTab} onValueChange={handleTabChange}>
                 <TabsList>
                     {tabItems.map(({ name, path }) => (
-                        <TabsTrigger key={name} value={path}>
-                            {name}
-                        </TabsTrigger>
+                        <Link key={name} href={path}>
+                            <TabsTrigger value={path}>
+                                {name}
+                            </TabsTrigger>
+                        </Link>
                     ))}
                 </TabsList>
             </Tabs>
