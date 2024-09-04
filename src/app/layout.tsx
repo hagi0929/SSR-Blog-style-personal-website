@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils"
 import Tab from "@/components/Header/Tab";
+import Footer from "@/components/Footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "flex flex-col min-h-screen bg-background font-sans antialiased items-center pb-10",
+          "flex flex-col min-h-screen bg-background font-sans antialiased items-center",
           fontSans.variable
         )}
       >
@@ -32,6 +33,9 @@ export default function RootLayout({
           <Tab />
         </header>
         <main className="w-screen md:w-2/3 px-4 md:px-0 pt-20 md:pt-28">{children}</main>
+        <footer>
+          <Footer />
+        </footer>
       </body>
     </html>
   );
