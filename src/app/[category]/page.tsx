@@ -1,11 +1,8 @@
 import React from 'react';
-
 import { exampleArticles, exampleTags } from '@/data/newMockData';
 import Heading from "@/components/Heading";
-import Tags from "@/components/Tags";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import ItemList from "@/components/ItemList";
 
-// This function generates static params for each category page
 export function generateStaticParams() {
     const categories = [
         "programming",
@@ -18,9 +15,7 @@ export function generateStaticParams() {
     }));
 }
 
-// The Page component now receives the correct data based on params
 const Page = ({ params }: { params: { category: string } }) => {
-    // Find the current category's data
     const categoryData = {
         programming: {
             subheading: "Explore the world of coding and technology",
@@ -52,20 +47,7 @@ const Page = ({ params }: { params: { category: string } }) => {
                 subheading={subheading}
             />
             <div className="flex flex-col px-2 gap-4">
-                <Tags tags={tags} />
-                <BentoGrid>
-                    {articles.map(({ id, title, previewText, category }) => {
-                        const url = "/" + category + "/" + id;
-                        return (
-                            <BentoGridItem
-                                key={id}
-                                title={title}
-                                description={previewText}
-                                href={url}
-                            />
-                        )
-                    })}
-                </BentoGrid>
+                <ItemList tags={tags} articles={articles} />
             </div>
         </div>
     );
