@@ -1,6 +1,16 @@
 import React from 'react'
 
-const Sidebar: React.FC = () => {
+interface SidebarItem {
+  name: string;
+  href: string;
+}
+
+interface SidebarProps {
+  title: string;
+  list: SidebarItem[];
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ title, list}) => {
   return (
     <div>Sidebar</div>
   )
