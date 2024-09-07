@@ -1,11 +1,11 @@
 "use client";
 
-import { ArticleTagModel } from '@/models/models';
+import {ArticleTagModel, PropertyModel} from '@/models/models';
 import React, { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 
 interface TagsProps {
-    tags: ArticleTagModel[];
+    tags: PropertyModel[];
 }
 
 const Tags: React.FC<TagsProps> = ({ tags }) => {
@@ -22,6 +22,7 @@ const Tags: React.FC<TagsProps> = ({ tags }) => {
     return (
         <div className="hidden md:flex flex-row gap-2">
             <Badge
+                key={"all"}
                 variant={activeTag === "All" ? "default" : "outline"}
                 className="cursor-pointer"
                 onClick={() => onClickTag("All")}

@@ -5,9 +5,10 @@ import {
     ProjectModel,
     ProjectTechStackModel,
 } from "@/models/models";
+import { NextURL } from "next/dist/server/web/next-url";
 
 export async function getArticleById(articleId: string): Promise<FullArticleModel> {
-    const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`);
+    const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/item`);
     if (articleId) {
         url.searchParams.append("id", articleId);
     }
@@ -41,8 +42,8 @@ export async function getArticlesBySeriesId(seriesId: string): Promise<ArticleMo
 }
 
 export async function getArticles(tagLabel: string | null = null,
-                                  seriesLabel: string | null = null,
-                                  page: number = 0,
+    seriesLabel: string | null = null,
+    page: number = 0,
 ):
     Promise<ArticleModel[]> {
     const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`);
@@ -67,24 +68,33 @@ export async function getArticles(tagLabel: string | null = null,
     return data as ArticleModel[];
 }
 
-export async function getArticleTagList(): Promise<ProjectCategoryModel[]> {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/article/tags`);
+export async function getWritingTagList(): Promise<ProjectCategoryModel[]> {
+    const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
+    url.searchParams.append("itemName", "Writing");
+    url.searchParams.append("propertyName", "Tag");
 
-    if (!response.ok) {
-        throw new Error(`Failed to fetch categories: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data as ProjectCategoryModel[];
-}
-
-export async function getProjectSeriesList(): Promise<ProjectTechStackModel[]> {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/article/series`);
+    const response = await fetch(url);
 
     if (!response.ok) {
         throw new Error(`Failed to fetch tags: ${response.statusText}`);
     }
 
     const data = await response.json();
-    return data as ProjectTechStackModel[];
+    return data as ProjectCategoryModel[];
 }
+
+export async function getWritingSeriesList(): Promise<ProjectTechStackModel[]> {
+    const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
+    url.searchParams.append("itemName", "Writing");
+    url.searchParams.append("propertyName", "Series");
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch series: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data as ProjectCategoryModel[];
+}
+

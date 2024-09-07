@@ -1,6 +1,5 @@
 import {ExtendedRecordMap} from "notion-types";
 import * as url from "node:url";
-import {string} from "node:crypto";
 
 enum LinkType {
     Github,
@@ -16,19 +15,18 @@ export interface LinkModel {
 }
 
 
-export interface ArticleTagModel {
+export interface PropertyModel {
     id: string;
     label: string;
     count?: number;
 }
-
-export interface ArticleSeriesModel {
-    id: string;
-    label: string;
-    count?: number;
+export interface ArticleTagModel extends PropertyModel {
 }
 
-export interface FullArticleModel {
+export interface ArticleSeriesModel extends PropertyModel {
+}
+
+export interface FullArticleModel  {
     id: string;
     title: string;
     blocks: any[];
