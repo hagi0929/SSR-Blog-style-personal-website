@@ -2,9 +2,9 @@ import type {Metadata} from "next";
 import {Inter as FontSans} from "next/font/google"
 import "./globals.css";
 
-import {cn} from "@/lib/utils"
-import Tab from "@/components/Header/Tab";
-import {QueryClient} from "@tanstack/query-core";
+import { cn } from "@/lib/utils"
+import Tab from "@/components/Tab";
+import Footer from "@/components/Footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,17 +23,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body
-      className={cn(
-        "flex flex-col min-h-screen bg-background font-sans antialiased items-center pb-10",
-        fontSans.variable
-      )}
-    >
-    <header className="z-50 fixed top-4 md:top-10 w-[98vw] md:w-2/3">
-      <Tab/>
-    </header>
-    <main className="w-screen md:w-2/3 px-4 md:px-0 pt-20 md:pt-28">{children}</main>
-    </body>
+      <body
+        className={cn(
+          "flex flex-col min-h-screen bg-background font-sans antialiased items-center",
+          fontSans.variable
+        )}
+      >
+        <header className="z-50 fixed top-4 md:top-10 w-[98vw] md:w-2/3">
+          <Tab />
+        </header>
+        <main className="w-screen md:w-2/3 px-4 md:px-0 pt-20 md:pt-28">{children}</main>
+        <footer>
+          <Footer />
+        </footer>
+      </body>
     </html>
   );
 }

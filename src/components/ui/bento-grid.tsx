@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
 import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
+import { Badge } from '@/components/ui/badge';
 
 export const BentoGrid = ({
   className,
@@ -28,7 +29,8 @@ export const BentoGridItem = ({
   description,
   header,
   icon,
-  href
+  href,
+  tags
 }: {
   className?: string;
   title?: string | React.ReactNode;
@@ -36,6 +38,12 @@ export const BentoGridItem = ({
   header?: React.ReactNode;
   icon?: React.ReactNode;
   href?: Url;
+  tags?: {
+    id: string;
+    label: string;
+    category: string;
+    count: number;
+  }[];
 }) => {
   return (
     <Link href={href || ""} passHref className={cn("grid h-full", className)}>
@@ -45,6 +53,17 @@ export const BentoGridItem = ({
           <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardContent className="flex-grow">{icon}</CardContent>
+        <CardContent className="flex gap-2">
+          {tags?.map(({ id, label }) => (
+            <Badge
+              key={id}
+              variant="outline"
+              className="text-xs"
+            >
+              {label}
+            </Badge>
+          ))}
+        </CardContent>
       </Card>
     </Link>
   );
