@@ -3,18 +3,15 @@ import {NextURL} from "next/dist/server/web/next-url";
 
 export async function getProjects(categoryLabel: string | null = null,
                                   techStackLabel: string | null = null,
-                                  page: number = 0,
 ):
   Promise<ProjectModel[]> {
-  const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/project`);
+  const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/item`);
+  url.searchParams.append("itemName", "Project");
   if (categoryLabel) {
     url.searchParams.append("category", categoryLabel);
   }
   if (techStackLabel) {
     url.searchParams.append("techStack", techStackLabel);
-  }
-  if (page > 0) {
-    url.searchParams.append("page", page.toString());
   }
   const response = await fetch(url.toString());
 
@@ -29,7 +26,7 @@ export async function getProjects(categoryLabel: string | null = null,
 }
 
 export async function getProjectCategoryList(): Promise<ProjectCategoryModel[]> {
-  const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
+  const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/item`);
   url.searchParams.append("itemName", "Project");
   url.searchParams.append("propertyName", "Category");
 

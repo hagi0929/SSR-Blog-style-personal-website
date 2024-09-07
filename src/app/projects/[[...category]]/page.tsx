@@ -11,10 +11,11 @@ import Tags from "@/components/Tags";
 import { mockArticles } from "@/data/mockData";
 
 
-export default async function Projects({ params }: { params: { category?: string[] } }) {
-    const categorySlug = params.category ? params.category[0] : undefined; // Get the first segment for category
 
-    const projects = await getProjects();
+export default async function Projects({ params }: { params: { category?: string[] } }) {
+    const categorySlug = params.category ? params.category[0] : null; // Get the first segment for category
+
+    const projects = await getProjects(categorySlug);
     let count = 0;
     let addThree = true;
     const blocks = []
