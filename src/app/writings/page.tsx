@@ -1,25 +1,16 @@
-import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import ProjectList from "@/components/Project/ProjectList";
 import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
 import Heading from "@/components/Heading";
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 import { exampleArticles } from "@/data/newMockData";
 import { getWritings, getWritingSeriesList } from "@/api/writtings";
 
 export default async function Writings() {
   const projects = await getWritings();
   const writings = await getWritingSeriesList();
+
+  console.log(writings);
 
   return (
     <div className="w-full flex flex-col min-h-screen gap-16">
@@ -34,9 +25,10 @@ export default async function Writings() {
         {
           writings.map(({ id, label, slug }) => {
             return (
-              <Link href={`/writings/series/${slug}`}>              <div key={id} className="flex flex-col gap-4">
-                {label}
-              </div>
+              <Link key={slug} href={`/writings/series/${slug}`}>
+                <div key={id} className="flex flex-col gap-4">
+                  {label}
+                </div>
               </Link>
             )
           })
