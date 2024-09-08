@@ -14,12 +14,12 @@ export interface LinkModel {
     url: URL;
 }
 
-
 export interface PropertyModel {
     id: string;
     label: string;
     slug: string;
 }
+
 export interface ArticleTagModel extends PropertyModel {
     count?: number;
 
