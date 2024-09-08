@@ -53,7 +53,7 @@ export const BentoGridItem = ({
           <CardDescription>{description}</CardDescription>
         </CardHeader>
         <CardContent className="flex-grow">{icon}</CardContent>
-        <CardContent className="flex gap-2">
+        <CardContent className="flex gap-2 w-full">
           {tags?.map(({ id, label }) => (
             <Badge
               key={id}
