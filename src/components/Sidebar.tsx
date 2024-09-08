@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { ArticleTagModel, ProjectCategoryModel } from '@/models/models';
 import Link from 'next/link';
@@ -13,6 +13,11 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ title, list }) => {
   const [currentItem, setCurrentItem] = useState("All");
+  
+  const onHandleClick = useCallback((name: string) => {
+    setCurrentItem(name);
+  }, []);
+
   return (
     <div className="hidden md:flex flex-col fixed left-10 top-10 justify-start">
       <span className="text-2xl font-bold">{title}</span>
@@ -20,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ title, list }) => {
         <Link
           href="/projects"
           className={`${currentItem === "All" ? "font-bold" : ""}`}
-          onClick={() => setCurrentItem("All")}
+          onClick={() => onHandleClick("All")}
         >
           All
         </Link>
@@ -29,7 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({ title, list }) => {
             key={index}
             href={`/projects/${value.slug}`}
             className={`${currentItem === value.label ? "font-bold" : ""}`}
-            onClick={() => setCurrentItem(value.label)}
+            onClick={() => onHandleClick(value.label)}
           >
             {value.label}
           </Link>
