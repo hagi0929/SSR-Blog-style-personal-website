@@ -1,4 +1,4 @@
-import {ExtendedRecordMap} from "notion-types";
+import { ExtendedRecordMap } from "notion-types";
 import * as url from "node:url";
 
 enum LinkType {
@@ -18,16 +18,27 @@ export interface LinkModel {
 export interface PropertyModel {
     id: string;
     label: string;
-    count?: number;
+    slug: string;
 }
 export interface ArticleTagModel extends PropertyModel {
+    count?: number;
+
 }
 
 export interface ArticleSeriesModel extends PropertyModel {
 }
 
-export interface FullArticleModel  {
+export interface ProjectTechStackModel extends PropertyModel {
+    count?: number;
+}
+
+export interface ProjectCategoryModel extends PropertyModel {
+    count?: number;
+}
+
+export interface FullArticleModel {
     id: string;
+    slug: string;
     title: string;
     blocks: any[];
     tags: ArticleTagModel[];
@@ -37,6 +48,7 @@ export interface FullArticleModel  {
 
 export interface ArticleModel {
     id: string;
+    slug: string;
     title: string;
     previewText: string;
     tags: ArticleTagModel[];
@@ -45,25 +57,13 @@ export interface ArticleModel {
     series: ArticleSeriesModel | null;
 }
 
-export interface ProjectTechStackModel {
-    id: string;
-    label: string;
-    count?: number;
-}
-
-export interface ProjectCategoryModel {
-    id: string;
-    label: string;
-    count?: number;
-}
 
 export interface ProjectModel {
     id: string;
+    slug: string;
     title: string;
     description: string;
     thumbnail: string;
-    isPrimary: boolean;
-    hasSeries: boolean;
     links: LinkModel[];
     techStacks: ProjectTechStackModel[];
     categories: ProjectCategoryModel[];

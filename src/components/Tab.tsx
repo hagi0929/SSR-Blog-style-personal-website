@@ -23,18 +23,6 @@ const Tab = () => {
             name: "Writings",
             path: "/writings"
         },
-        {
-            name: "programming",
-            path: "/programming"
-        },
-        {
-            name: "personal",
-            path: "/personal"
-        },
-        {
-            name: "blog",
-            path: "/blog"
-        },
     ];
 
     const getBasePath = (path: string) => {
@@ -64,32 +52,31 @@ const Tab = () => {
         return tabItems.some(item => path.startsWith(item.path));
     };
 
-    const [tabShown, setTabShown] = useState(shouldShowNavbar(currentPath));
+    // const [tabShown, setTabShown] = useState(shouldShowNavbar(currentPath));
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            if (currentScrollY > lastScrollY) {
-                // Scrolling down
-                setIsTabVisible(false);
-                setTimeout(() => setTabShown(false), 300); // Wait for the transition to finish
-            } else {
-                // Scrolling up
-                setTabShown(true);
-                setTimeout(() => setIsTabVisible(true), 300); // Delay to trigger the CSS transition
-            }
-            setLastScrollY(currentScrollY);
-        };
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const currentScrollY = window.scrollY;
+    //         if (currentScrollY > lastScrollY) {
+    //             // Scrolling down
+    //             setIsTabVisible(false);
+    //             setTimeout(() => setTabShown(false), 300); // Wait for the transition to finish
+    //         } else {
+    //             // Scrolling up
+    //             setTabShown(true);
+    //             setTimeout(() => setIsTabVisible(true), 300); // Delay to trigger the CSS transition
+    //         }
+    //         setLastScrollY(currentScrollY);
+    //     };
 
-        window.addEventListener('scroll', handleScroll);
+    //     window.addEventListener('scroll', handleScroll);
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [lastScrollY]);
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, [lastScrollY]);
 
     return (
-        tabShown &&
         <div
             className={`transition-all duration-300 ${isTabVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
                 }`}

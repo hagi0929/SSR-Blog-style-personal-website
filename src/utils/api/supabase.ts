@@ -8,3 +8,7 @@ export function getPropertiesByItemName(itemName: string, PropertyName: string |
   } 
   return supabaseClient.from('PropertyList').select('*').eq('itemName', itemName);
 }
+
+export function getItemsByItemName(itemName: string) {
+  return supabaseClient.from('ItemList').select('*').eq('itemName', itemName);
+}

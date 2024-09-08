@@ -1,3 +1,5 @@
+"use client";
+
 import { ArticleTagModel } from '@/models/models';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';

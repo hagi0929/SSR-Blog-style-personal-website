@@ -5,6 +5,7 @@ import {
     ProjectModel,
     ProjectTechStackModel,
 } from "@/models/models";
+import { getItemsByItemName } from "@/utils/api/supabase";
 import { NextURL } from "next/dist/server/web/next-url";
 
 export async function getArticleById(articleId: string): Promise<FullArticleModel> {
@@ -24,49 +25,59 @@ export async function getArticleById(articleId: string): Promise<FullArticleMode
     return data as FullArticleModel;
 }
 
-export async function getArticlesBySeriesId(seriesId: string): Promise<ArticleModel> {
-    const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`);
-    if (seriesId) {
-        url.searchParams.append("seriesId", seriesId);
+export async function getWritings(catergorySlug: string | null = null): Promise<ArticleModel[]> {
+    let { data: items, error } = await getItemsByItemName("Writing");
+    if (error) {
+        // TODO: Handle error
+        throw new Error("Error while fetching");
     }
-    const response = await fetch(url.toString());
+    // console.log(items);
 
-    if (!
-        response.ok
-    ) {
-        throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    if (catergorySlug) {
+        items = items.filter((item) => item.properties?.some((property) => property.slug === catergorySlug));
     }
+    const parsedItems = items.map((item) => {
+        return {
+            id: item.notionId,
+            slug: item.slug,
+            title: item.label,
+            previewText: item.metadata?.description || "",
+            createdAt: item.metadata?.createdDate || "",
+            tags: item.properties?.filter((property) => property.name === "Tag") || [],
+            series: item.properties?.filter((property) => property.name === "Series") || [],
+        } as ArticleModel;
+    })
+    console.log(parsedItems);
 
-    const data = await response.json();
-    return data as ArticleModel;
+    return parsedItems as ArticleModel[];
 }
 
-export async function getArticles(tagLabel: string | null = null,
-    seriesLabel: string | null = null,
-    page: number = 0,
-):
-    Promise<ArticleModel[]> {
-    const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`);
-    if (tagLabel) {
-        url.searchParams.append("tag", tagLabel);
-    }
-    if (seriesLabel) {
-        url.searchParams.append("series", seriesLabel);
-    }
-    if (page > 0) {
-        url.searchParams.append("page", page.toString());
-    }
-    const response = await fetch(url.toString());
+// export async function getArticles(tagLabel: string | null = null,
+//     seriesLabel: string | null = null,
+//     page: number = 0,
+// ):
+//     Promise<ArticleModel[]> {
+//     const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/articles`);
+//     if (tagLabel) {
+//         url.searchParams.append("tag", tagLabel);
+//     }
+//     if (seriesLabel) {
+//         url.searchParams.append("series", seriesLabel);
+//     }
+//     if (page > 0) {
+//         url.searchParams.append("page", page.toString());
+//     }
+//     const response = await fetch(url.toString());
 
-    if (!
-        response.ok
-    ) {
-        throw new Error(`Failed to fetch projects: ${response.statusText}`);
-    }
+//     if (!
+//         response.ok
+//     ) {
+//         throw new Error(`Failed to fetch projects: ${response.statusText}`);
+//     }
 
-    const data = await response.json();
-    return data as ArticleModel[];
-}
+//     const data = await response.json();
+//     return data as ArticleModel[];
+// }
 
 export async function getWritingTagList(): Promise<ProjectCategoryModel[]> {
     const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
