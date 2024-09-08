@@ -16,7 +16,7 @@ const Tags: React.FC<TagsProps> = ({ tags, activeTag, onClickTag }) => {
     }, 0);
 
     return (
-        <div className="hidden md:flex flex-row gap-2">
+        <div className="hidden md:flex flex-row gap-2 max-w-full overflow-x-scroll scrollbar-hide">
             <Badge
                 key={"all"}
                 variant={activeTag === "All" ? "default" : "outline"}
