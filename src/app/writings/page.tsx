@@ -5,6 +5,7 @@ import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
 import Heading from "@/components/Heading";
 import { exampleArticles } from "@/data/newMockData";
 import { getWritings, getWritingSeriesList } from "@/api/writtings";
+import WritingCarousel from "@/components/WritingCarousel";
 
 export default async function Writings() {
   const projects = await getWritings();
@@ -33,6 +34,7 @@ export default async function Writings() {
             )
           })
         }
+        <WritingCarousel articles={writings} />
       </div>
       <div className="flex flex-col gap-4">
         <span className="text-2xl font-bold">
