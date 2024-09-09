@@ -35,7 +35,7 @@ export default async function Writings() {
         {articles.map(({ id, title, slug, createdAt, previewText }) => {
           const url = "/post/" + slug;
           return (
-            <div>{slug}, {title}</div>
+            <div key={id}>{slug}, {title}</div>
           )
         })}
       </div>
