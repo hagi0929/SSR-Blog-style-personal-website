@@ -23,31 +23,29 @@ export default async function Projects({ params }: { params: { category?: string
     return (
         <div className="w-full flex flex-col min-h-screen gap-4">
             <Sidebar title="Category" list={categoryList}></Sidebar>
-            <Tags tags={techStackList}></Tags>
             <Heading
                 heading={categorySlug ? `${categorySlug} Projects` : "All Projects"}
                 subheading="I like building things. Here are a few things I've built."
             />
-            <div className="flex flex-col px-2 gap-4">
-                <BentoGrid>
-                    {projects.map(({ id, title, description }, index) => {
-                        let style = "col-span-1";
-                        if (index == count) {
-                            style = "col-span-2";
-                            addThree ? count += 3 : count += 1;
-                            addThree = !addThree
-                        }
-                        return (
-                            <BentoGridItem
-                                key={id}
-                                title={title}
-                                description={description}
-                                className={style}
-                            />
-                        )
-                    })}
-                </BentoGrid>
-            </div>
+            <Tags tags={techStackList}></Tags>
+            <BentoGrid className="px-2 gap-4">
+                {projects.map(({ id, title, description }, index) => {
+                    let style = "col-span-1";
+                    if (index == count) {
+                        style = "col-span-2";
+                        addThree ? count += 3 : count += 1;
+                        addThree = !addThree
+                    }
+                    return (
+                        <BentoGridItem
+                            key={id}
+                            title={title}
+                            description={description}
+                            className={style}
+                        />
+                    )
+                })}
+            </BentoGrid>
         </div>
     );
 }
