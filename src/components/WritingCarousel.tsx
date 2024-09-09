@@ -11,11 +11,11 @@ interface WritingCarouselProps {
 
 const WritingCarousel = ({ articles }: WritingCarouselProps) => {
   return (
-    <Carousel className="w-full max-w-full">
+    <Carousel className="w-full">
       <CarouselContent>
         {articles.map((article) => (
-          <Link key={article.id} href={`/writings/${article.slug}`}>
-            <CarouselItem >
+          <Link key={article.id} href={`/writings/series/${article.slug}`}>
+            <CarouselItem>
               <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-square items-center justify-center p-6">
