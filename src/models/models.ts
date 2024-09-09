@@ -57,7 +57,6 @@ export interface ArticleModel {
     series: ArticleSeriesModel | null;
 }
 
-
 export interface ProjectModel {
     id: string;
     slug: string;

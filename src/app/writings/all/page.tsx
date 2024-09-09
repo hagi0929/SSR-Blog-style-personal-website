@@ -18,12 +18,12 @@ import { exampleArticles } from "@/data/newMockData";
 import { getWritings } from "@/api/writtings";
 
 export default async function Writings() {
-  const projects = await getWritings();
+  const articles = await getWritings();
   // const tags = await getArticleTagList();
 
   return (
     <div className="w-full flex flex-col min-h-screen gap-16">
-            <Link href={"/writings/"}>
+      <Link href={"/writings/"}>
         Back
       </Link>
 
@@ -32,9 +32,8 @@ export default async function Writings() {
         subheading="These are list of my writings. Most of them would be technical stuff"
       />
       <div className="flex flex-col gap-4">
-        {projects.map(({ id, title, slug, createdAt, previewText }, index) => {
+        {articles.map(({ id, title, slug, createdAt, previewText }) => {
           const url = "/post/" + slug;
-          const style = index % 3 == 0 ? "col-span-2" : "col-span-1";
           return (
             <div>{slug}, {title}</div>
           )

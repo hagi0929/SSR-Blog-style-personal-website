@@ -11,8 +11,6 @@ import Tags from "@/components/Tags";
 import { mockArticles } from "@/data/mockData";
 import Sidebar from "@/components/Sidebar";
 
-
-
 export default async function Projects({ params }: { params: { category?: string[] } }) {
     const categorySlug = params.category ? params.category[0] : null; // Get the first segment for category
     const techStackList = await getProjectTechStackList();
