@@ -31,7 +31,7 @@ const Sidebar: React.FC<SidebarProps> = ({ title, list }) => {
         </Link>
         {list.slice(0, 5).map((value, index) => (
           <Link
-            key={index}
+            key={value.slug}
             href={`/projects/${value.slug}`}
             className={`${currentItem === value.label ? "font-bold" : ""}`}
             onClick={() => onHandleClick(value.label)}
