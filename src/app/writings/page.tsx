@@ -8,10 +8,8 @@ import { getWritings, getWritingSeriesList } from "@/api/writtings";
 import WritingCarousel from "@/components/WritingCarousel";
 
 export default async function Writings() {
-  const projects = await getWritings();
-  const writings = await getWritingSeriesList();
-
-  console.log(writings);
+  const articles = await getWritings();
+  const seriesList = await getWritingSeriesList();
 
   return (
     <div className="w-full flex flex-col min-h-screen gap-16">
@@ -21,43 +19,33 @@ export default async function Writings() {
       />
       <div className="flex flex-col gap-4">
         <span className="text-2xl font-bold">
-          Series - url에서는 싹다 슬러그 쓸꺼임
+          Series
         </span>
-        {
-          writings.map(({ id, label, slug }) => {
-            return (
-              <Link key={slug} href={`/writings/series/${slug}`}>
-                <div key={id} className="flex flex-col gap-4">
-                  {label}
-                </div>
-              </Link>
-            )
-          })
-        }
-        <WritingCarousel articles={writings} />
+        <WritingCarousel articles={seriesList} />
       </div>
       <div className="flex flex-col gap-4">
         <span className="text-2xl font-bold">
           Posts
         </span>
-        <Link href={"/writings/all"}>
-          See all Posts
-        </Link>
         <BentoGrid>
-          {exampleArticles.map(({ id, title, previewText, category }, index) => {
-            const url = "/" + category + "/" + id;
+          {articles.map(({ id, slug, title, previewText, tags }, index) => {
+            const url = "/writings/post/" + slug;
             const style = index % 3 == 0 ? "col-span-2" : "col-span-1";
             return (
               <BentoGridItem
-                key={id}
+                key={slug}
                 title={title}
                 className={style}
                 description={previewText}
                 href={url}
+                tags={tags}
               />
             )
           })}
         </BentoGrid>
+        <Link href={"/writings/all"} className="font-bold self-center">
+          View all posts
+        </Link>
       </div>
     </div>
   );
