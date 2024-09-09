@@ -29,7 +29,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <header className="z-50 fixed top-4 md:top-10 w-[98vw] md:w-2/3">
+        <header className="z-50 fixed top-4 md:top-10 transform -translate-x-1/2 left-1/2 md:w-auto">
           <Tab />
         </header>
         <main className="w-screen md:w-2/3 px-4 md:px-0 pt-20 md:pt-28">{children}</main>
