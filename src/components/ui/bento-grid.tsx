@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Link from "next/link";
 import { Url } from "next/dist/shared/lib/router/router";
 import { Badge } from '@/components/ui/badge';
+import { ArticleTagModel } from "@/models/models";
 
 export const BentoGrid = ({
   className,
@@ -14,7 +15,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto",
+        "grid md:auto-rows-[18rem] grid-cols-1 md:grid-cols-3 gap-4 w-full mx-auto",
         className
       )}
     >
@@ -27,7 +28,6 @@ export const BentoGridItem = ({
   className,
   title,
   description,
-  header,
   icon,
   href,
   tags
@@ -35,15 +35,9 @@ export const BentoGridItem = ({
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
-  header?: React.ReactNode;
   icon?: React.ReactNode;
   href?: Url;
-  tags?: {
-    id: string;
-    label: string;
-    category: string;
-    count: number;
-  }[];
+  tags?: ArticleTagModel[];
 }) => {
   return (
     <Link href={href || ""} passHref className={cn("grid h-full", className)}>
