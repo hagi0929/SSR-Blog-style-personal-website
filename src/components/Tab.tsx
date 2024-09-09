@@ -78,8 +78,7 @@ const Tab = () => {
 
     return (
         <div
-            className={`transition-all duration-300 ${isTabVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-                }`}
+            className={`transition-all duration-300 ${isTabVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'}`}
         >
             <Tabs value={currentTab} onValueChange={handleTabChange}>
                 <TabsList>
