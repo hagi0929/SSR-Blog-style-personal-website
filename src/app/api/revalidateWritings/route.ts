@@ -2,17 +2,17 @@ import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-    const requestUrl = req.nextUrl;
-    const searchParam = requestUrl.searchParams;
+    const headers = req.headers;
+    
+    const origin = headers.get('origin');
 
-    const propertyName = searchParam.get('propertyName') || null;
-    if (requestUrl != process.env.NODE_ENV) {
+    if (!origin || origin !== process.env.ALLOWED_ORIGIN) {
         return NextResponse.json({
             status: 400,
-            body: 'Error while Fetching'
+            body: 'Error: Invalid request origin'
         });
     }
-    
+
     revalidatePath('/writings');
 
     return NextResponse.json({
