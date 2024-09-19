@@ -4,14 +4,14 @@ import { getItemsByItemName, getPropertiesByItemName } from "@/utils/api/supabas
 import { log } from "console";
 import { NextURL } from "next/dist/server/web/next-url";
 
-export async function getProjects(categoryLabel: string | null = null,
+export async function getProjects(
+  categoryLabel: string | null = null,
   techStackLabel: string | null = null,
-):
-  Promise<ProjectModel[]> {
+): Promise<ProjectModel[]> {
   const { data: items, error } = await getItemsByItemName("Project");
   if (error) {
     // TODO: Handle error
-    throw new Error("Error while fetching");
+    throw new Error("Error while fetching: " + error);
   }
   // console.log(items);
 
@@ -33,17 +33,11 @@ export async function getProjects(categoryLabel: string | null = null,
 }
 
 export async function getProjectCategoryList(): Promise<ProjectCategoryModel[]> {
-  const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
-  url.searchParams.append("itemName", "Project");
-  url.searchParams.append("propertyName", "Category");
+  const { data, error } = await getPropertiesByItemName("Project", "Category");
 
-  const response = await fetch(url.toString());
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch categories: ${response.statusText}`);
+  if (error) {
+    throw new Error(`Failed to fetch tags: ${error.message}`);
   }
-
-  const data = await response.json();
 
   return data.map((singleData: any) => {
     return {
@@ -56,17 +50,11 @@ export async function getProjectCategoryList(): Promise<ProjectCategoryModel[]> 
 }
 
 export async function getProjectTechStackList(): Promise<ProjectTechStackModel[]> {
-  const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
-  url.searchParams.append("itemName", "Project");
-  url.searchParams.append("propertyName", "Techstack");
+  const { data, error } = await getPropertiesByItemName("Project", "Techstack");
 
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch categories: ${response.statusText}`);
+  if (error) {
+    throw new Error(`Failed to fetch tags: ${error.message}`);
   }
-
-  const data = await response.json();
 
   return data.map((singleData: any) => {
     return {
