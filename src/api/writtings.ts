@@ -5,8 +5,9 @@ import {
     ProjectModel,
     ProjectTechStackModel,
 } from "@/models/models";
-import { getItemsByItemName } from "@/utils/api/supabase";
+import { getItemsByItemName, getPropertiesByItemName } from "@/utils/api/supabase";
 import { NextURL } from "next/dist/server/web/next-url";
+import { NextResponse } from "next/server";
 
 export async function getArticleById(articleId: string): Promise<FullArticleModel> {
     const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/item`);
@@ -15,9 +16,7 @@ export async function getArticleById(articleId: string): Promise<FullArticleMode
     }
     const response = await fetch(url.toString());
 
-    if (!
-        response.ok
-    ) {
+    if (!response.ok) {
         throw new Error(`Failed to fetch projects: ${response.statusText}`);
     }
 
@@ -80,32 +79,22 @@ export async function getWritings(catergorySlug: string | null = null): Promise<
 // }
 
 export async function getWritingTagList(): Promise<ProjectCategoryModel[]> {
-    const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
-    url.searchParams.append("itemName", "Writing");
-    url.searchParams.append("propertyName", "Tag");
+    const { data, error } = await getPropertiesByItemName("Writing", "Tag");
 
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch tags: ${response.statusText}`);
+    if (error) {
+        throw new Error(`Failed to fetch tags: ${error.message}`);
     }
 
-    const data = await response.json();
     return data as ProjectCategoryModel[];
 }
 
 export async function getWritingSeriesList(): Promise<ProjectTechStackModel[]> {
-    const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/property`);
-    url.searchParams.append("itemName", "Writing");
-    url.searchParams.append("propertyName", "Series");
+    const { data, error } = await getPropertiesByItemName("Writing", "Tag");
 
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch series: ${response.statusText}`);
+    if (error) {
+        throw new Error(`Failed to fetch series: ${error.message}`);
     }
 
-    const data = await response.json();
     return data as ProjectCategoryModel[];
 }
 
