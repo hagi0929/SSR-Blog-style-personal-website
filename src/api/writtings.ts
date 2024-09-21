@@ -28,7 +28,7 @@ export async function getWritings(catergorySlug: string | null = null): Promise<
     let { data: items, error } = await getItemsByItemName("Writing");
     if (error) {
         // TODO: Handle error
-        throw new Error("Error while fetching");
+        throw new Error("Error while fetching : " + error);
     }
     // console.log(items);
 
