@@ -1,14 +1,30 @@
 import { createClient } from '@supabase/supabase-js'
 
-export const supabaseClient = createClient(process.env.SUPABASE_URL || "GG", process.env.SUPABASE_ANON_KEY || "GG")
+export const supabaseClient = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL || "GG", process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "GG")
 
-export function getPropertiesByItemName(itemName: string, PropertyName: string | null = null) {
-  if (PropertyName) {
-    return supabaseClient.from('PropertyList').select('*').eq('itemName', itemName).eq('propertyName', PropertyName);
-  } 
-  return supabaseClient.from('PropertyList').select('*').eq('itemName', itemName);
+export async function getPropertiesByItemName(
+  itemName: string,
+  PropertyName: string | null = null
+): Promise<{ data: any[] | null; error: any }> {
+  try {
+    const query = PropertyName
+      ? supabaseClient.from('PropertyList').select('*').eq('itemName', itemName).eq('propertyName', PropertyName)
+      : supabaseClient.from('PropertyList').select('*').eq('itemName', itemName);
+
+    const { data, error } = await query;
+    return { data, error };
+  } catch (err) {
+    console.error("Error fetching properties:", err);
+    return { data: null, error: err };
+  }
 }
 
-export function getItemsByItemName(itemName: string) {
-  return supabaseClient.from('ItemList').select('*').eq('itemName', itemName);
+export async function getItemsByItemName(itemName: string): Promise<{ data: any[] | null; error: any }> {
+  try {
+    const { data, error } = await supabaseClient.from('ItemList').select('*').eq('itemName', itemName);
+    return { data, error };
+  } catch (err) {
+    console.error("Error fetching items:", err);
+    return { data: null, error: err };
+  }
 }
