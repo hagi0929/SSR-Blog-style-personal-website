@@ -1,17 +1,8 @@
-import Image from "next/image";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import ProjectList from "@/components/Project/ProjectList";
-import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
 import { getProjectCategoryList, getProjects, getProjectTechStackList } from "@/api/projects";
 import Heading from "@/components/Heading";
 import Tags from "@/components/Tags";
-import { mockArticles } from "@/data/mockData";
 import Sidebar from "@/components/Sidebar";
-
-
 
 export default async function Projects({ params }: { params: { category?: string[] } }) {
     const categorySlug = params.category ? params.category[0] : null; // Get the first segment for category
