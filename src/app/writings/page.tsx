@@ -1,10 +1,7 @@
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import Link from "next/link";
-import ProjectList from "@/components/Project/ProjectList";
-import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
 import Heading from "@/components/Heading";
-import { exampleArticles } from "@/data/newMockData";
-import { getWritings, getWritingSeriesList } from "@/api/writtings";
+import { getWritings, getWritingSeriesList } from "@/api/writings";
 import WritingCarousel from "@/components/WritingCarousel";
 
 export default async function Writings() {
