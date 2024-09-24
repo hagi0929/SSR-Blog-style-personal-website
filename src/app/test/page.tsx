@@ -1,28 +1,32 @@
-import { notion, getDatabase } from "@/api/notion"
+import { getDatabase, getData, getPageData } from "@/api/notion"
 import { NotionAPI } from 'notion-client'
 import { NotionRenderer } from 'react-notion-x'
+// notion 테마 스타일링 (필수)
+import 'react-notion-x/src/styles.css'
+
+// 코드 하이라이트 스타일용 (선택)
+import 'prismjs/themes/prism-tomorrow.css'
 
 export default async function ArticlePage() {
-    const db_list = await getDatabase();
+    const db = await getData();
 
-    // Fetch collection data
-    // const collectionData = await notion.getCollectionData(collectionId, collectionViewId);
+    console.log(db.results[1]);
 
-    // console.log(db_list);
+    const notion = new NotionAPI({
+        activeUser: process.env.NOTION_ACTIVE_USER,
+        authToken: process.env.NOTION_TOKEN_V2
+    })
+    const recordMap = await notion.getPage(db.results[1].id);
 
-    // console.log("collection ", db_list.collection['710d809d-29b0-42ed-8e7c-37e07c60060d'].value)
-    // console.log("collectionView ", db_list.collection_view['34a4b7d9-0c14-4c33-8897-ac49bf5c707e'].value)
-    // console.log("collectionQuery ", db_list.collection_query['710d809d-29b0-42ed-8e7c-37e07c60060d']['34a4b7d9-0c14-4c33-8897-ac49bf5c707e'])
+    console.log("recordMap: ", recordMap);
+    console.log("block: ", recordMap.block['b910db21-d291-4a05-a885-85153b2436c3'].value);
 
-    
-    const db = await notion.getCollectionData('710d809d-29b0-42ed-8e7c-37e07c60060d', '34a4b7d9-0c14-4c33-8897-ac49bf5c707e');
-    console.log("db ", db);
-    console.log("reducer ", db.result.reducerResults.collection_group_results)
-    console.log("blocks ", db.recordMap.collection)
     return (
-        // <NotionRenderer recordMap={recordMap} fullPage={true} darkMode={false} />
-        <div>
-            success
-        </div>
+        <>
+            <NotionRenderer recordMap={recordMap} />
+            <div>
+                success
+            </div>
+        </>
     );
 }
