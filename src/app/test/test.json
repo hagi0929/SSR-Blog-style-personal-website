@@ -1,0 +1,48 @@
+{
+    "result": {
+      "type": "reducer",
+      "reducerResults": {
+        "collection_group_results": {}
+      },
+      "sizeHint": 2
+    },
+    "recordMap": {
+      "block": {
+        "10b6cdce-0ccf-80c3-8c55-e584cf689bb8": {},
+        "b910db21-d291-4a05-a885-85153b2436c3": {},
+        "1463156c-c709-4bfe-a3d7-933d865ebfa7": {},
+        "1086cdce-0ccf-8080-9897-f8d9c8c9e500": {},
+        "162a2b21-589c-47e8-80f8-0aea1c1b83e7": {},
+        "1ed9f900-1830-404f-9d96-ef7780653381": {},
+        "f7bc0814-6341-46ba-981c-0ab1fd2d24a3": {},
+        "1086cdce-0ccf-8076-9f64-e33911df6d58": {},
+        "1086cdce-0ccf-80db-bde0-e7d6dd67d28c": {},
+        "80ed04f5-ab9b-4012-96da-ed3287b1dfbe": {},
+        "10a6cdce-0ccf-8054-a654-fa8628332e9d": {},
+        "10a6cdce-0ccf-8008-8c2e-c32befc19793": {},
+        "10a6cdce-0ccf-8035-b948-cc621829f481": {},
+        "10a6cdce-0ccf-805b-a168-e240ecffa0cd": {},
+        "10a6cdce-0ccf-80e2-8c5e-f5ca7c5941b2": {},
+        "10a6cdce-0ccf-80ee-acea-c09de956ed78": {},
+        "10a6cdce-0ccf-8088-b70a-e6aaad0546ab": {},
+        "10a6cdce-0ccf-8094-877d-f1ea569d91d4": {},
+        "10a6cdce-0ccf-80c8-aaf0-c210a422f41c": {},
+        "10a6cdce-0ccf-80f2-988c-fe98e27f8cb5": {},
+        "10a6cdce-0ccf-8043-a965-c02573d5ec5e": {},
+        "10a6cdce-0ccf-80f0-964e-f2fb8783c774": {}
+      },
+      "collection": {
+        "710d809d-29b0-42ed-8e7c-37e07c60060d": {}
+      }
+    },
+    "collectionIds": [
+      "710d809d-29b0-42ed-8e7c-37e07c60060d"
+    ],
+    "allBlockIds": [
+      "10b6cdce-0ccf-80c3-8c55-e584cf689bb8",
+      "b910db21-d291-4a05-a885-85153b2436c3"
+    ],
+    "shouldUseClientMode": true,
+    "isViewSpecificClientMode": false
+  }
+  
