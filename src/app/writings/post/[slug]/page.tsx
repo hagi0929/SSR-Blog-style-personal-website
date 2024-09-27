@@ -1,14 +1,14 @@
 import React from 'react';
-import { NotionRenderer } from 'react-notion-x';
 import { getContent } from '@/api/writings';
 import NotionPage from '@/components/NotionPage';
 
 export default async function Page({ params }: { params: { slug: string } }) {
-    const content = await getContent(params.slug);
-
+    const data = await getContent(params.slug);
+    const content = data[0].content;
+    console.log(content);
     return (
         <>
-            <NotionRenderer recordMap={content} />
+            <NotionPage recordMap={content} />
         </>
     );
 }
