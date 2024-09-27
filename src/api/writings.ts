@@ -24,12 +24,12 @@ export async function getArticleById(articleId: string): Promise<FullArticleMode
 }
 
 export const getContent = async (slug: string) : Promise<ExtendedRecordMap> => {
-    let { data: items, error } = await getArticleContentFromSlug("Writing", slug);
+    let { data: content, error } = await getArticleContentFromSlug("Writing", slug);
     if (error) {
         // TODO: Handle error
         throw new Error("Error while fetching : " + error + " data: " + items);
     }
-    return items;
+    return content;
 };
 
 export async function getWritings(catergorySlug: string | null = null): Promise<ArticleModel[]> {
