@@ -5,7 +5,8 @@ import {
     ProjectModel,
     ProjectTechStackModel,
 } from "@/models/models";
-import { getItemsByItemName, getPropertiesByItemName } from "@/utils/api/supabase";
+import {getArticleContentFromSlug, getItemsByItemName, getPropertiesByItemName} from "@/utils/api/supabase";
+import {ExtendedRecordMap} from "notion-types";
 
 export async function getArticleById(articleId: string): Promise<FullArticleModel> {
     const url = new URL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/item`);
@@ -21,6 +22,15 @@ export async function getArticleById(articleId: string): Promise<FullArticleMode
     const data = await response.json();
     return data as FullArticleModel;
 }
+
+export const getContent = async (slug: string) : Promise<ExtendedRecordMap> => {
+    let { data: items, error } = await getArticleContentFromSlug("Writing", slug);
+    if (error) {
+        // TODO: Handle error
+        throw new Error("Error while fetching : " + error + " data: " + items);
+    }
+    return items;
+};
 
 export async function getWritings(catergorySlug: string | null = null): Promise<ArticleModel[]> {
     let { data: items, error } = await getItemsByItemName("Writing");

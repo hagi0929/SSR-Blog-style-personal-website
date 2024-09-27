@@ -1,5 +1,4 @@
-import { ExtendedRecordMap } from "notion-types";
-import * as url from "node:url";
+import { ExtendedRecordMap } from 'notion-types';
 
 enum LinkType {
     Github,

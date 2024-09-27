@@ -1,20 +1,14 @@
-import { getWritings } from '@/api/writtings';
-import React from 'react'
+import React from 'react';
+import { NotionRenderer } from 'react-notion-x';
+import { getContent } from '@/api/writings';
+import {NotionPage} from "@/components/NotionPage";
 
-export const dynamicParams = false;
+export default async function Page({ params }: { params: { slug: string } }) {
+    const content = await getContent(params.slug);
 
-export async function generateStaticParams() {
-  const posts = await getWritings();
- 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }))
+    return (
+        <div>
+            content
+        </div>
+    );
 }
-
-const Page = ({ params }: { params: { slug: string } }) => {
-  return (
-    <div>Page {params.slug}</div>
-  )
-}
-
-export default Page

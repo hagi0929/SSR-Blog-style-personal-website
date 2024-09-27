@@ -15,7 +15,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { exampleArticles } from "@/data/newMockData";
-import { getWritings } from "@/api/writtings";
+import { getWritings } from "@/api/writings";
 
 export default async function Writings({ params }: { params: { category?: string[] } }) {
   const projects = await getWritings(params.category);
