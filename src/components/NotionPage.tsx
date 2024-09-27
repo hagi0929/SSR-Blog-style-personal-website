@@ -11,13 +11,13 @@ import Link from 'next/link';
 const Code = dynamic(() => import('react-notion-x/build/third-party/code').then(m => m.Code));
 const Collection = dynamic(() =>
     import('react-notion-x/build/third-party/collection').then((m) => {
-      return (props) => {
-        console.log('block:', props.block);  // Log the block here
-        return <m.Collection {...props} />;
-      };
+        return (props) => {
+            console.log('block:', props.block);  // Log the block here
+            return <m.Collection {...props} />;
+        };
     })
-  );
-  
+);
+
 const CustomCollection = ({ block }: { block: CollectionViewBlock | CollectionViewPageBlock | PageBlock }) => {
     console.log("bloc info: ", block);
     return (
