@@ -23,10 +23,6 @@ const Tab = () => {
             name: "Writings",
             path: "/writings"
         },
-        {
-            name: "Writings",
-            path: "/test"
-        },
     ];
 
     const getBasePath = (path: string) => {
