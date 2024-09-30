@@ -14,7 +14,7 @@ const WritingCarousel = ({ articles }: WritingCarouselProps) => {
     <Carousel className="w-full">
       <CarouselContent>
         {articles.map((article) => (
-          <Link key={article.id} href={`/writings/series/${article.slug}`}>
+          <Link key={article.slug} href={`/writings/series/${article.slug}`}>
             <CarouselItem>
               <div className="p-1">
                 <Card>
