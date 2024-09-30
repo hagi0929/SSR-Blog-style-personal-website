@@ -18,7 +18,9 @@ export default async function Writings() {
         <span className="text-2xl font-bold">
           Series
         </span>
-        <WritingCarousel articles={seriesList} />
+        <div className="md:px-10">
+          <WritingCarousel articles={seriesList} />
+        </div>
       </div>
       <div className="flex flex-col gap-4">
         <span className="text-2xl font-bold">
@@ -28,7 +30,6 @@ export default async function Writings() {
           {articles.map(({ id, slug, title, previewText, tags }, index) => {
             const url = "/writings/post/" + slug;
             const style = index % 3 == 0 ? "col-span-2" : "col-span-1";
-            console.log(slug)
             return (
               <BentoGridItem
                 key={slug}
