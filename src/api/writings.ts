@@ -30,7 +30,7 @@ export const getContent = async (slug: string) : Promise<ExtendedRecordMap> => {
     }
     
     if (!data) {
-        throw new Error("Error while fetching : no data in the specified slug");
+        throw new Error("No data found for slug: " + slug);
     }
 
     return JSON.parse(data.content) as ExtendedRecordMap;
@@ -47,7 +47,8 @@ export async function getWritings(catergorySlug: string | null = null): Promise<
     if (catergorySlug) {
         items = items.filter((item) => item.properties?.some((property) => property.slug === catergorySlug));
     }
-    const parsedItems = items.map((item) => {
+
+    const parsedItems = items?.map((item) => {
         return {
             id: item.notionId,
             slug: item.slug,
@@ -58,7 +59,7 @@ export async function getWritings(catergorySlug: string | null = null): Promise<
             series: item.properties?.filter((property) => property.name === "Series") || [],
         } as ArticleModel;
     })
-    console.log(parsedItems);
+    // console.log(parsedItems);
 
     return parsedItems as ArticleModel[];
 }
