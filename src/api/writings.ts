@@ -2,7 +2,6 @@ import {
     ArticleModel,
     FullArticleModel,
     ProjectCategoryModel,
-    ProjectModel,
     ProjectTechStackModel,
 } from "@/models/models";
 import {getArticleContentFromSlug, getItemsByItemName, getPropertiesByItemName} from "@/utils/api/supabase";
@@ -24,12 +23,17 @@ export async function getArticleById(articleId: string): Promise<FullArticleMode
 }
 
 export const getContent = async (slug: string) : Promise<ExtendedRecordMap> => {
-    let { data: content, error } = await getArticleContentFromSlug("Writing", slug);
+    let { data, error } = await getArticleContentFromSlug("Writing", slug);
     if (error) {
         // TODO: Handle error
-        throw new Error("Error while fetching : " + error + " data: " + items);
+        throw new Error("Error while fetching : " + error + " data: " + data);
     }
-    return content;
+    
+    if (!data) {
+        throw new Error("Error while fetching : no data in the specified slug");
+    }
+
+    return JSON.parse(data.content) as ExtendedRecordMap;
 };
 
 export async function getWritings(catergorySlug: string | null = null): Promise<ArticleModel[]> {
