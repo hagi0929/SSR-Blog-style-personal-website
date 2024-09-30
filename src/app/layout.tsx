@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google"
 import "@/styles/globals.css";
-// notion custom css
-import "@/styles/notion.css"
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css'
-
 // used for code syntax highlighting (optional)
 import 'prismjs/themes/prism-tomorrow.css'
-
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
+// notion custom css
+// import "@/styles/notion.css"
+
 
 import { cn } from "@/lib/utils"
 import Tab from "@/components/Tab";
