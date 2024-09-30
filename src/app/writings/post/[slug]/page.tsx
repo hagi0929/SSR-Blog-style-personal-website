@@ -3,10 +3,9 @@ import { getContent } from '@/api/writings';
 import NotionPage from '@/components/NotionPage';
 
 export default async function Page({ params }: { params: { slug: string } }) {
-    const data = await getContent(params.slug);
-    const content = JSON.parse(data[0].content);
+    const content = await getContent(params.slug);
 
-    console.log("data " + data);
+    console.log("data " + content);
     
     return (
         <>
