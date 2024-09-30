@@ -2,8 +2,6 @@
 import React from 'react';
 import { NotionRenderer } from 'react-notion-x';
 import { CollectionViewBlock, CollectionViewPageBlock, PageBlock } from 'notion-types';
-import { useScrollOffset } from './useScrollOffset';  // Import the custom hook
-import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
