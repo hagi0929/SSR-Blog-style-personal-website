@@ -16,7 +16,7 @@ interface AllPostItemProps {
 const AllPostItem: React.FC<AllPostItemProps> = ({ title, description, date, url, tags }) => {
   return (
     <Link href={url}>
-      <Card className="">
+      <Card className="hover:shadow-lg transition duration-200 shadow-input">
         <CardHeader>
           <CardDescription>
             Test
