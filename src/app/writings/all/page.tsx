@@ -1,41 +1,33 @@
-import Image from "next/image";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import ProjectList from "@/components/Project/ProjectList";
-import ProjectFilterBar from "@/components/Project/ProjectFilterBar";
 import Heading from "@/components/Heading";
-import { Card, CardContent } from "@/components/ui/card"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
-import { exampleArticles } from "@/data/newMockData";
 import { getWritings } from "@/api/writings";
+import BackButton from "@/components/BackButton";
+import AllPostItem from "@/components/AllPostItem";
 
 export default async function Writings() {
   const articles = await getWritings();
   // const tags = await getArticleTagList();
 
   return (
-    <div className="w-full flex flex-col min-h-screen gap-16">
-      <Link href={"/writings/"}>
-        Back
-      </Link>
-
+    <div className="w-full flex flex-col max-w-[720px] mx-auto gap-8">
+      <div>
+        <BackButton />
+      </div>
       <Heading
-        heading="All Posts"
+        heading="All Writing Posts"
         subheading="These are list of my writings. Most of them would be technical stuff"
       />
       <div className="flex flex-col gap-4">
-        {articles.map(({ id, title, slug, createdAt, previewText }) => {
-          const url = "/post/" + slug;
+        {articles.map(({ id, title, slug, createdAt, previewText, tags }) => {
+          const url = "/writings/post/" + slug;
           return (
-            <div key={id}>{slug}, {title}</div>
+            <AllPostItem
+              key={id}
+              title={title}
+              description={previewText}
+              date={new Date(createdAt)}
+              url={url}
+              tags={tags}
+            />
           )
         })}
       </div>
