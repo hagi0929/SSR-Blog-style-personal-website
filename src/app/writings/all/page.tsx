@@ -1,11 +1,12 @@
 import Heading from "@/components/Heading";
-import { getWritings } from "@/api/writings";
+import { getWritings, getWritingTagList } from "@/api/writings";
 import BackButton from "@/components/BackButton";
 import AllPostItem from "@/components/AllPostItem";
+import Tags from "@/components/Tags";
 
 export default async function Writings() {
   const articles = await getWritings();
-  // const tags = await getArticleTagList();
+  const tags = await getWritingTagList();
 
   return (
     <div className="w-full flex flex-col max-w-[720px] mx-auto gap-8">
@@ -14,9 +15,8 @@ export default async function Writings() {
       </div>
       <Heading
         heading="All Writing Posts"
-        subheading="These are list of my writings. Most of them would be technical stuff"
       />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 pb-10">
         {articles.map(({ id, title, slug, createdAt, previewText, tags }) => {
           const url = "/writings/post/" + slug;
           return (
