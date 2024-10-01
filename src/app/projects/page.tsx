@@ -9,6 +9,7 @@ export default async function Projects({ params }: { params: { category?: string
     const techStackList = await getProjectTechStackList();
     const categoryList = await getProjectCategoryList();
     const projects = await getProjects(categorySlug);
+    
     let count = 0;
     let addThree = true;
     return (
@@ -20,7 +21,8 @@ export default async function Projects({ params }: { params: { category?: string
             />
             <Tags tags={techStackList}></Tags>
             <BentoGrid className="px-2 gap-4">
-                {projects.map(({ id, title, description }, index) => {
+                {projects.map(({ id, title, description, slug }, index) => {
+                    const url = "/projects/post/" + slug;
                     let style = "col-span-1";
                     if (index == count) {
                         style = "col-span-2";
@@ -33,6 +35,7 @@ export default async function Projects({ params }: { params: { category?: string
                             title={title}
                             description={description}
                             className={style}
+                            href={url}
                         />
                     )
                 })}
