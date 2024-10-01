@@ -42,8 +42,8 @@ export default async function Writings() {
             )
           })}
         </BentoGrid>
-        <Link href={"/writings/all"} className="font-bold self-center">
-          View all posts
+        <Link href={"/writings/all"} className="font-bold self-center hover:underline hover:underline-offset-4">
+          View All Posts
         </Link>
       </div>
     </div>
