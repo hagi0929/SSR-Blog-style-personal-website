@@ -75,7 +75,7 @@ export async function getWritingTagList(): Promise<ProjectCategoryModel[]> {
 }
 
 export async function getWritingSeriesList(): Promise<ProjectTechStackModel[]> {
-    const { data, error } = await getPropertiesByItemName("Writing", "Tag");
+    const { data, error } = await getPropertiesByItemName("Writing", "Series");
 
     if (error) {
         throw new Error(`Failed to fetch series: ${error.message}`);
