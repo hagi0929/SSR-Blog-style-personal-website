@@ -1,7 +1,12 @@
 import { ArticleSeriesModel } from '@/models/models'
 import React from 'react'
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel'
-import { Card, CardContent } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card'
 import Link from 'next/link'
 
 
@@ -16,13 +21,11 @@ const WritingCarousel = ({ articles }: WritingCarouselProps) => {
         {articles.map((article) => (
           <Link key={article.slug} href={`/writings/series/${article.slug}`}>
             <CarouselItem>
-              <div className="p-1">
-                <Card>
-                  <CardContent className="flex aspect-square items-center justify-center p-6">
-                    <span className="text-4xl font-semibold">{article.label}</span>
-                  </CardContent>
-                </Card>
-              </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>{article.label}</CardTitle>
+                </CardHeader>
+              </Card>
             </CarouselItem>
           </Link>
         ))}
