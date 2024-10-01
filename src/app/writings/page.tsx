@@ -9,7 +9,7 @@ export default async function Writings() {
   const seriesList = await getWritingSeriesList();
 
   return (
-    <div className="w-full flex flex-col min-h-screen gap-16">
+    <div className="w-full flex flex-col min-h-screen gap-8">
       <Heading
         heading="Writings"
         subheading="These are list of my writings. Most of them would be technical stuff"
@@ -29,12 +29,12 @@ export default async function Writings() {
         <BentoGrid>
           {articles.map(({ id, slug, title, previewText, tags }, index) => {
             const url = "/writings/post/" + slug;
-            const style = index % 3 == 0 ? "col-span-2" : "col-span-1";
+            // const style = index % 3 == 0 ? "col-span-2" : "col-span-1";
             return (
               <BentoGridItem
                 key={slug}
                 title={title}
-                className={style}
+                // className={style}
                 description={previewText}
                 href={url}
                 tags={tags}
